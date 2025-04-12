@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const gitPath = "/Dallefar/checkPerm/refs/heads/main/check.txt"
+const gitPath = "https://raw.githubusercontent.com/Dallefar/checkPerm/refs/heads/main/check.txt"
 
 interface VersionCheckerProps {
     children: React.ReactNode;
@@ -12,7 +12,7 @@ export default function VersionChecker({ children }: VersionCheckerProps) {
     useEffect(() => {
         const checkPerm = async () => {
             try {
-                const response = await fetch(`https://raw.githubusercontent.com${gitPath}`);
+                const response = await fetch(gitPath);
                 if (!response.ok) throw new Error("Can't get perms");
 
                 const gitText = await response.text();
